@@ -7,6 +7,7 @@ import com.example.exeption.EmployeeStoragesFullExeption;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 @Service
 public class EmployeeService {
@@ -16,7 +17,7 @@ public class EmployeeService {
         if (employees.size() > MAX_SIZE) {
             throw new EmployeeStoragesFullExeption();
         }
-        var employee = new Employee(firstName, lastName);
+        var employee = new Employee(firstName, lastName, department, salary);
         if (employees.contains(employee)) {
             throw new EmployeeAlreadyAddedExeption();
         }
@@ -24,19 +25,22 @@ public class EmployeeService {
         return employee;
     }
     public Employee delete(String firstName, String lastName){
-        var employee = new Employee(firstName,lastName);
+        var employee = new Employee(firstName,lastName, department, salary);
         if (!employees.remove(employee)){
             throw new EmployeeNotFoundExeption();
         }
         return employee;
     }
     public Employee find(String firstName, String lastName){
-        var employee = new Employee(firstName,lastName);
+        var employee = new Employee(firstName,lastName, department, salary);
         for (Employee emp : employees) {
             if (emp.equals(employee)){
                 return emp;
             }
         }
         throw new EmployeeNotFoundExeption();
+    }
+
+    public Arrays getEmployess() {
     }
 }
