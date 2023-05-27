@@ -14,11 +14,38 @@ public class DepartmentService {
         this.employeeService = employeeService;
     }
 
-    public Employee max (int dept) {
+    public Employee max(int dept) {
         return employeeService.getEmployess()
                 .stream()
-                .filter(e -- e.getDepartment() == dept)
-                .max (Comparator.comparing(Employee::getSalary))
+                .filter(e -> e.getDepartment() == dept)
+                .max(Comparator.comparing(Employee::getSalary))
                 .orElse(null);
     }
+
+    public Employee max(int dept) {
+        return employeeService.getEmployees()
+                .stream()
+                .filter(e -> e.getDepartment() == dept)
+                .max(Comparator.comparing(Employee::getSalary))
+                .orElse(null);
+    }
+
+    public Employee min(int dept) {
+        return employeeService.getEmployees()
+                .stream()
+                .filter(e -> e.getDepartment() == dept)
+                .min(Comparator.comparing(Employee::getSalary))
+                .orElse(null);
+    }
+
+    public Collection<Employee> allByDept(int dept) {
+        return employeeService.getEmployees()
+                .stream()
+                .filter(e -> e.getDepartment() == dept)
+                .collect(Collectors.toList());
+    }
+        public Map<Integer, List<Employee» all() return employeeService.getEmployees(){
+                .stream/)
+                .collect (groupingBy(Employee :: getDepartment));
+}
 }
